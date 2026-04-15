@@ -22,7 +22,7 @@ void pushfrontexception(const String& xtext ="",const String& listname ="")
                 throw exception(x1.get_cstring()); 
             }
     }
-NumericVector generate_input_vector(Nullable<List&> in_list, int list_element, int list_length,const String& listname ="", int pools=0)
+NumericVector generate_input_vector(Nullable<List> in_list, int list_element, int list_length,const String& listname ="", int pools=0)
     {   
             String x1="";
             List in_listX(in_list);
@@ -35,7 +35,7 @@ NumericVector generate_input_vector(Nullable<List&> in_list, int list_element, i
             return in_element;
     } 
     
-NumericMatrix generate_input_matrix(Nullable<List&> in_list, int list_element, int list_length,const String& listname ="", int pools=0, int timesteps=0)
+NumericMatrix generate_input_matrix(Nullable<List> in_list, int list_element, int list_length,const String& listname ="", int pools=0, int timesteps=0)
     {   
             String x1="";
             List in_listX(in_list);
@@ -49,7 +49,7 @@ NumericMatrix generate_input_matrix(Nullable<List&> in_list, int list_element, i
             pushfrontexception(x1,listname);
             return in_element;
     }    
-List generate_input_list(Nullable<List&> in_list, int list_element, int list_length,const String& listname ="",const String& misname ="")
+List generate_input_list(Nullable<List> in_list, int list_element, int list_length,const String& listname ="",const String& misname ="")
     {   
             String x1="";
             List in_listX(in_list);
@@ -116,7 +116,7 @@ void check_list(List inlist, const String& element ="", bool wood=0, const Strin
             if (strlen(x1.get_cstring())>10) throw exception(x1.get_cstring());  
         }  
     }
-List change_list_order(Nullable<List&> in_list, const String& listname ="", const String& listname2 ="",int listnr=0) 
+List change_list_order(Nullable<List> in_list, const String& listname ="", const String& listname2 ="",int listnr=0) 
     {  
             String clow ="";
             List in_listX(in_list);
@@ -170,7 +170,7 @@ List change_list_order(Nullable<List&> in_list, const String& listname ="", cons
             }      
             return(NewList);
     }
-bool contains_list(Nullable<List&> in_list, int list_element)
+bool contains_list(Nullable<List> in_list, int list_element)
     {
             List in_listX(in_list);
             SEXP x = in_listX[list_element];
@@ -377,35 +377,35 @@ NumericVector C0_analyt(double CN_sp=0, double rmf=0, double t_a0=0, double t_a1
 
 List
 sorcering(
-              const Nullable<NumericMatrix&> A = R_NilValue, 
+              const Nullable<NumericMatrix> A = R_NilValue, 
               const String& tsteps ="monthly", 
-              const Nullable<NumericVector&> C0 = R_NilValue, 
-              const Nullable<NumericVector&> N0 = R_NilValue, 
+              const Nullable<NumericVector> C0 = R_NilValue, 
+              const Nullable<NumericVector> N0 = R_NilValue, 
               const Nullable<SEXP*> Cin = R_NilValue,
               const Nullable<SEXP*> Nin = R_NilValue,
-              const Nullable<List&> Cin_wood = R_NilValue,
-              const Nullable<List&> Nin_wood = R_NilValue,
-              const Nullable<NumericVector&> wood_diam = R_NilValue,
+              const Nullable<List> Cin_wood = R_NilValue,
+              const Nullable<List> Nin_wood = R_NilValue,
+              const Nullable<NumericVector> wood_diam = R_NilValue,
               const Nullable<SEXP*> xi = R_NilValue,
-              const Nullable<NumericMatrix&> env_in = R_NilValue,
-              const Nullable<NumericVector&> site = R_NilValue,
+              const Nullable<NumericMatrix> env_in = R_NilValue,
+              const Nullable<NumericVector> site = R_NilValue,
               const Nullable<SEXP*> theta = R_NilValue,
-              const Nullable<NumericVector&> theta_unc = R_NilValue,
+              const Nullable<NumericVector> theta_unc = R_NilValue,
               const int theta_n_unc = 1,
-              const Nullable<NumericMatrix&> meas_data = R_NilValue, 
-              const Nullable<List&> A_sl = R_NilValue, 
-              const Nullable<List&> C0_sl = R_NilValue,
-              const Nullable<List&> N0_sl = R_NilValue,
-              const Nullable<List&> Cin_sl = R_NilValue,
-              const Nullable<List&> Nin_sl = R_NilValue,
-              const Nullable<List&> Cin_wood_sl = R_NilValue,
-              const Nullable<List&> Nin_wood_sl = R_NilValue,
-              const Nullable<List&> wood_diam_sl = R_NilValue,
-              const Nullable<List&> xi_sl = R_NilValue,
-              const Nullable<List&> env_in_sl = R_NilValue,
-              const Nullable<List&> site_sl = R_NilValue,
-              const Nullable<List&> sitelist = R_NilValue,
-              const Nullable<List&> meas_data_sl = R_NilValue,
+              const Nullable<NumericMatrix> meas_data = R_NilValue, 
+              const Nullable<List> A_sl = R_NilValue, 
+              const Nullable<List> C0_sl = R_NilValue,
+              const Nullable<List> N0_sl = R_NilValue,
+              const Nullable<List> Cin_sl = R_NilValue,
+              const Nullable<List> Nin_sl = R_NilValue,
+              const Nullable<List> Cin_wood_sl = R_NilValue,
+              const Nullable<List> Nin_wood_sl = R_NilValue,
+              const Nullable<List> wood_diam_sl = R_NilValue,
+              const Nullable<List> xi_sl = R_NilValue,
+              const Nullable<List> env_in_sl = R_NilValue,
+              const Nullable<List> site_sl = R_NilValue,
+              const Nullable<List> sitelist = R_NilValue,
+              const Nullable<List> meas_data_sl = R_NilValue,
               const bool calcN = false,
               const bool calcNbalance = false,
               const bool calcN0 = false,
@@ -414,15 +414,15 @@ sorcering(
               const bool CTool_input_raw = false,
               const bool RothC_Cin4C0 = false,
               const NumericVector& RothC_dpmrpm = 1.439024, 
-              const Nullable<NumericVector&> C0_fracts = R_NilValue, 
+              const Nullable<NumericVector> C0_fracts = R_NilValue, 
               const bool multisite = false,
-              const Nullable<IntegerVector&> pooltypes = R_NilValue, 
+              const Nullable<IntegerVector> pooltypes = R_NilValue, 
               const int CN_fast_init = 40,
               const int CN_bio = 9,
-              const Nullable<NumericVector&> CN_spin = R_NilValue,
-              const Nullable<List&> CN_fast_init_sl = R_NilValue,
-              const Nullable<List&> CN_bio_sl = R_NilValue,
-              const Nullable<List&> CN_spin_sl = R_NilValue,
+              const Nullable<NumericVector> CN_spin = R_NilValue,
+              const Nullable<List> CN_fast_init_sl = R_NilValue,
+              const Nullable<List> CN_bio_sl = R_NilValue,
+              const Nullable<List> CN_spin_sl = R_NilValue,
               const bool init_info = false,
               const String& model ="",
               const bool spinup = false,
